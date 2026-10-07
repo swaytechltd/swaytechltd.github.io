@@ -16,20 +16,32 @@ for (const link of document.querySelectorAll("[data-service]")) {
     if (!emailEnquiry || !enquiryContext) return;
 
     const service = link.dataset.service;
+    const isPaid = Boolean(link.dataset.consultation);
+    const consultation = isPaid
+      ? "Paid engagement (quote requested)"
+      : "Free introductory call (15-30 minutes)";
+    const terms = isPaid
+      ? "Scope and fees are agreed before paid work begins."
+      : "Your first call is free: 15 minutes, up to 30 if needed.";
+    const heading = document.querySelector("#formMount h3");
+    if (heading) {
+      heading.textContent = isPaid ? "Request a quote" : "Request your free consultation";
+    }
     const subject = "Swaytech Consultancy - " + service;
     const body = [
       "Name: ",
       "Organisation: ",
       "Site location: ",
       "Support needed: " + service,
+      "Consultation: " + consultation,
       "Project details: ",
       "Preferred meeting times: ",
     ].join("\n");
 
     emailEnquiry.href = "mailto:swaytechltd@gmail.com?subject=" +
       encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-    enquiryContext.textContent = "Enquiry: " + service +
-      ". Include your site location, project details and preferred meeting times.";
+    enquiryContext.textContent = "Enquiry: " + service + ". " + terms +
+      " Include your site location, project details and preferred meeting times.";
   });
 }
 
@@ -58,7 +70,7 @@ function renderGoogleForm() {
   if (!formMount || !form) return;
 
   const heading = document.createElement("h3");
-  heading.textContent = "Request a consultation";
+  heading.textContent = "Request your free consultation";
 
   const formLink = document.createElement("a");
   const linkUrl = new URL(form.href);
