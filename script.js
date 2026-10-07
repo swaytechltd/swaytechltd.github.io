@@ -1,8 +1,7 @@
 // Use the published Google Forms URL; short share links open in a new tab.
 const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfnAN0Al8dOSeCmjSAV1cAknUiJ3XSVH4T_1TSKi7hAv3O6gQ/viewform";
 const GOOGLE_FORM_EMBED_URL = "";
-// Enable after the event template is replaced with consultation questions.
-const GOOGLE_FORM_ENABLED = false;
+const GOOGLE_FORM_ENABLED = true;
 
 const yearElement = document.querySelector("#year");
 if (yearElement) {
